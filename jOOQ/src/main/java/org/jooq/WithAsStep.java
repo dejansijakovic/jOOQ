@@ -133,4 +133,8 @@ public interface WithAsStep {
     @Support
     WithStep asNotMaterialized(ResultQuery<?> query);
 
+    @NotNull
+    @Support
+    WithStep asWithHint(ResultQuery<?> query, String hint);
+
 }

@@ -93,4 +93,7 @@ public interface CommonTableExpression<R extends Record> extends Table<R> {
      */
     @Experimental
     @Nullable Materialized $materialized();
+
+    @Experimental
+    @Nullable String $hint();
 }

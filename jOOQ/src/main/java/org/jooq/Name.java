@@ -303,6 +303,10 @@ public interface Name extends QueryPart, Comparable<Name> {
     @Support
     <R extends Record> CommonTableExpression<R> asNotMaterialized(ResultQuery<R> query);
 
+    @NotNull
+    @Support
+    <R extends Record> CommonTableExpression<R> asWithHint(ResultQuery<R> query, String hint);
+
     /**
      * Add a list of fields to this name to make this name a
      * {@link DerivedColumnList}.

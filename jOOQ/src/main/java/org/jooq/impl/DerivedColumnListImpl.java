@@ -130,7 +130,7 @@ implements
         this.fieldNameFunction = fieldNameFunction;
     }
 
-    final CommonTableExpression as0(ResultQuery query, Materialized materialized) {
+    final CommonTableExpression as0(ResultQuery query, Materialized materialized, String hint) {
         ResultQuery<?> q = query;
 
         if (fieldNameFunction != null)
@@ -141,25 +141,30 @@ implements
                     Name[]::new
                 )),
                 q,
-                materialized
+                materialized,
+                hint
             );
         else
-            return new CommonTableExpressionImpl(this, q, materialized);
+            return new CommonTableExpressionImpl(this, q, materialized, hint);
     }
 
     @Override
     public final CommonTableExpression as(ResultQuery query) {
-        return as0(query, null);
+        return as0(query, null, null);
     }
 
     @Override
     public final CommonTableExpression asMaterialized(ResultQuery query) {
-        return as0(query, Materialized.MATERIALIZED);
+        return as0(query, Materialized.MATERIALIZED, null);
     }
 
     @Override
     public final CommonTableExpression asNotMaterialized(ResultQuery query) {
-        return as0(query, Materialized.NOT_MATERIALIZED);
+        return as0(query, Materialized.NOT_MATERIALIZED, null);
+    }
+
+    public final CommonTableExpression asWithHint(ResultQuery query, String hint){
+        return as0(query, null, hint);
     }
 
     @Override

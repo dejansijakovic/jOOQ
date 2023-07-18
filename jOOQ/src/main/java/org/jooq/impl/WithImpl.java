@@ -292,6 +292,30 @@ implements
         return this;
     }
 
+    private final WithStep asWithHint(ResultQuery query, Boolean materialized, String hint){
+        if(hint == null){
+            return as0(query, materialized);
+        } else {
+            DerivedColumnList dcl;
+
+            if (fieldNameFunction != null)
+                dcl = name(alias).fields(fieldNameFunction);
+            else
+                dcl = name(alias).fields(fieldAliases);
+
+            CommonTableExpression cte;
+
+            cte = dcl.asWithHint(query, hint);
+
+            this.ctes.add(cte);
+            this.alias = null;
+            this.fieldAliases = null;
+            this.fieldNameFunction = null;
+
+            return this;
+        }
+    }
+
     @Override
     public final WithStep as(ResultQuery query) {
         return as0(query, null);
@@ -305,6 +329,11 @@ implements
     @Override
     public final WithStep asNotMaterialized(ResultQuery query) {
         return as0(query, false);
+    }
+
+    @Override
+    public WithStep asWithHint(ResultQuery query, String hint) {
+        return asWithHint(query, hint);
     }
 
     @Override

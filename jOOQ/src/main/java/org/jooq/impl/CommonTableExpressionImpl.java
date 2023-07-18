@@ -68,6 +68,7 @@ import org.jooq.TableOptions;
 // ...
 import org.jooq.impl.QOM.Materialized;
 import org.jooq.impl.Tools.SimpleDataKey;
+import org.jooq.tools.StringUtils;
 
 /**
  * @author Lukas Eder
@@ -85,13 +86,16 @@ final class CommonTableExpressionImpl<R extends Record> extends AbstractTable<R>
     private final FieldsImpl<R>          fields;
     private final Materialized           materialized;
 
-    CommonTableExpressionImpl(DerivedColumnListImpl name, ResultQuery<R> query, Materialized materialized) {
+    private final String hint;
+
+    CommonTableExpressionImpl(DerivedColumnListImpl name, ResultQuery<R> query, Materialized materialized, String hint) {
         super(TableOptions.expression(), name.name);
 
         this.name = name;
         this.query = query;
         this.fields = fields1();
         this.materialized = materialized;
+        this.hint = hint;
     }
 
     @Override
@@ -145,6 +149,10 @@ final class CommonTableExpressionImpl<R extends Record> extends AbstractTable<R>
             }
 
             visitSubquery(ctx, s, DERIVED_TABLE);
+
+            if (!StringUtils.isBlank(hint))
+                ctx.formatSeparator()
+                        .sql(hint);
 
 
 
@@ -235,6 +243,9 @@ final class CommonTableExpressionImpl<R extends Record> extends AbstractTable<R>
     public final Materialized $materialized() {
         return materialized;
     }
+
+    @Override
+    public final String $hint() { return hint; }
 
 
 

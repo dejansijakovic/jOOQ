@@ -115,6 +115,11 @@ implements
     }
 
     @Override
+    public final <R extends Record> CommonTableExpression<R> asWithHint(ResultQuery<R> query, String hint) {
+        return fields(new String[0]).asWithHint(query, hint);
+    }
+
+    @Override
     public final DerivedColumnListImpl fields(String... fieldNames) {
         return fields(Tools.names(fieldNames));
     }

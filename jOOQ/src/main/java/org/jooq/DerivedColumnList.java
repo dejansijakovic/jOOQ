@@ -123,6 +123,9 @@ public interface DerivedColumnList extends QueryPart {
     @Support({ FIREBIRD, H2, HSQLDB, MARIADB, MYSQL, POSTGRES, SQLITE, YUGABYTEDB })
     <R extends Record> CommonTableExpression<R> asNotMaterialized(ResultQuery<R> query);
 
+    <R extends Record> CommonTableExpression<R> asWithHint(ResultQuery<R> query, String hint);
+
+
     // -------------------------------------------------------------------------
     // XXX: Query Object Model
     // -------------------------------------------------------------------------
