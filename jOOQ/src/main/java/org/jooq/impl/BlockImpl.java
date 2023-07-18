@@ -66,6 +66,7 @@ import static org.jooq.impl.Keywords.K_CREATE;
 import static org.jooq.impl.Keywords.K_DO;
 import static org.jooq.impl.Keywords.K_DROP;
 import static org.jooq.impl.Keywords.K_END;
+import static org.jooq.impl.Keywords.K_EXECUTE;
 import static org.jooq.impl.Keywords.K_EXECUTE_BLOCK;
 import static org.jooq.impl.Keywords.K_EXECUTE_IMMEDIATE;
 import static org.jooq.impl.Keywords.K_EXECUTE_STATEMENT;
@@ -117,8 +118,12 @@ import org.jooq.impl.Tools.ExtendedDataKey;
  */
 final class BlockImpl extends AbstractRowCountQuery implements Block {
 
-    private static final Set<SQLDialect>  REQUIRES_EXECUTE_IMMEDIATE_ON_DDL = SQLDialect.supportedBy(FIREBIRD);
-    private static final Set<SQLDialect>  SUPPORTS_NULL_STATEMENT           = SQLDialect.supportedBy(POSTGRES, YUGABYTEDB);
+    private static final Set<SQLDialect>  SUPPORTS_NULL_STATEMENT            = SQLDialect.supportedBy(POSTGRES, YUGABYTEDB);
+
+
+
+
+
 
 
 
@@ -432,6 +437,19 @@ final class BlockImpl extends AbstractRowCountQuery implements Block {
     private static final void accept2(Context<?> ctx, Statement s) {
         ctx.formatSeparator();
         int position = ctx instanceof DefaultRenderContext d ? d.sql.length() : 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

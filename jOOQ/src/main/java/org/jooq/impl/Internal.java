@@ -37,10 +37,13 @@
  */
 package org.jooq.impl;
 
+import static org.jooq.impl.DSL.field;
+// ...
 import static org.jooq.impl.Tools.CONFIG;
 import static org.jooq.impl.Tools.CTX;
 import static org.jooq.impl.Tools.configuration;
 import static org.jooq.impl.Tools.nullSafe;
+import static org.jooq.impl.Tools.qualify;
 import static org.jooq.tools.StringUtils.isBlank;
 
 import java.lang.reflect.Array;
@@ -48,6 +51,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.jooq.Binding;
@@ -93,6 +97,7 @@ import org.jooq.TableField;
 import org.jooq.UDT;
 import org.jooq.UDTRecord;
 import org.jooq.UniqueKey;
+// ...
 import org.jooq.exception.DataAccessException;
 import org.jooq.impl.QOM.CreateTable;
 // ...
@@ -573,6 +578,67 @@ public final class Internal {
     public static final void requireCommercial(Supplier<String> logMessage) throws DataAccessException {
         CONFIG.get().requireCommercial(logMessage);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
